@@ -1,10 +1,10 @@
 <?php
 
 namespace App\Http\Middleware;
-use App\User;
+// use App\User;
 use Closure;
 use Auth;
-class users
+class user
 {
     /**
      * Handle an incoming request.

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\User;
 
 class ProfilController extends Controller
 {
@@ -68,13 +69,14 @@ class ProfilController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $simpan = Users::findOrfail($id);
+        $simpan = User::findOrfail($id);
         $simpan->update([
             'nama'     => $request->nama,
             'alamat'     => $request->alamat,
             'email'     => $request->email,
             'telp'     => $request->telp,
         ]);
+        return redirect('/user/profile');
         // DB::table('users')
         // ->where('id', $id)
         // ->update([

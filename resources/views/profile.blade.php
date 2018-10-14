@@ -44,23 +44,6 @@
                             <button type="submit" class="btn btn-block btn-default">Save</button>
                             {{ csrf_field() }}
                             <input type="hidden" name="_method"  value="PUT">
-                            {{-- <div class="modal-footer">
-                                <button type="button" class="btn btn-block btn-default" data-dismiss="profile">Cancel</button>
-                            </div> --}}
-                            {{-- <div class="form-group">
-                                <label class="lable-mod" for="exampleInputEmail1">Nama Buah</label>
-                                <input type="judul" name="nama" class="form-control" value="{{ old('name') ? old('name') : $harga->nama  }}" id="mod-inputan" placeholder="Nama Buah" required>
-                            </div>
-                            <div class="form-group">
-                                <label class="lable-mod" for="exampleInputEmail1">Harga/KG</label>
-                                <input type="judul" name="harga" class="form-control" value="{{ old('name') ? old('name') : $harga->hargaBuah  }}" id="mod-inputan" placeholder="harga" required>
-                            </div>
-                            <button type="submit" class="btn btn-block btn-default">Submit</button>
-                            {{ csrf_field() }}
-                            <input type="hidden" name="_method"  value="PUT">
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                            </div> --}}
                         </form>
                     </div>
                     <!-- /.box-body -->
