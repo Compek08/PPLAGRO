@@ -30,6 +30,10 @@
                                 <input type="text" name="nama" class="form-control" value="{{ old('name') ? old('name') : Auth::user()->name  }}" id="mod-inputan" placeholder="Nama" required>
                             </div>
                             <div class="form-group">
+                                    <label class="lable-mod" for="exampleInputEmail1">NIK</label>
+                                    <input type="number" name="nik" class="form-control" value="{{ old('nik') ? old('nik') : Auth::user()->nik  }}" id="mod-inputan" placeholder="NIK" required>
+                                </div>
+                            <div class="form-group">
                                 <label class="lable-mod" for="exampleInputEmail1">Alamat</label>
                                 <input type="text" name="alamat" class="form-control" value="{{ old('alamat') ? old('alamat') : Auth::user()->alamat  }}" id="mod-inputan" placeholder="Alamat" required>
                             </div>

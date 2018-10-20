@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Notifications\Notifiable;
+use Auth;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
@@ -17,7 +18,7 @@ class User extends Authenticatable
      */
 	public $timestamps = true;
     protected $fillable = [
-        'id','name','alamat','email','telp'
+        'password','id','name','nik','alamat','email','telp'
     ];
 
     /**
@@ -26,6 +27,14 @@ class User extends Authenticatable
      * @var array
      */
     protected $hidden = [
-        'password', 'remember_token',
+        'password', 'remember_token','role'
     ];
+
+// public function chek(){
+//     if(Auth::check()){
+//         return true;
+//     }else{
+//         return false;
+//     }
+// }
 }

@@ -1,10 +1,10 @@
 <?php
 
 namespace App\Http\Middleware;
-// use App\User;
+use App\User;
 use Closure;
 use Auth;
-class user
+class userMiddleware
 {
     /**
      * Handle an incoming request.
@@ -15,11 +15,14 @@ class user
      */
     public function handle($request, Closure $next)
     {
-        $user = $request->user();
+        // dd(Auth::check());
+        // $user = $request->user();
         if (Auth::check()) {
+            // dd('masuk');
             return $next($request);
+        }else{
+        return redirect('/login');
         }
-
-        return abort(404);
+        abort(404);
     }
 }

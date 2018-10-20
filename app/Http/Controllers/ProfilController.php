@@ -14,6 +14,7 @@ class ProfilController extends Controller
      */
     public function index()
     {
+        // dd(Auth::check());
         return view('profile');
     }
 
@@ -69,9 +70,19 @@ class ProfilController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $this->validate($request,[
+            'nama' => 'required',
+            'nik' => 'required|unique:users|max:16|min:16',
+            'alamat' => 'required|unique:users|',
+            'email' => 'required|unique:users|',
+            'telp' => 'required|unique:users|',
+
+        ]);
+
         $simpan = User::findOrfail($id);
         $simpan->update([
             'nama'     => $request->nama,
+            'nik'     => $request->nik,
             'alamat'     => $request->alamat,
             'email'     => $request->email,
             'telp'     => $request->telp,
