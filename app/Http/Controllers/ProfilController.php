@@ -71,12 +71,11 @@ class ProfilController extends Controller
     public function update(Request $request, $id)
     {
         $this->validate($request,[
-            'nama' => 'required',
-            'nik' => 'required|unique:users|max:16|min:16',
-            'alamat' => 'required|unique:users|',
-            'email' => 'required|unique:users|',
-            'telp' => 'required|unique:users|',
-
+            'nama' => 'required|string',
+            'nik' => 'required|min:16|max:16|unique:users',
+            'alamat' => 'required|unique:users',
+            'email' => 'required',
+            'telp' => 'required|unique:users',
         ]);
 
         $simpan = User::findOrfail($id);
@@ -87,7 +86,8 @@ class ProfilController extends Controller
             'email'     => $request->email,
             'telp'     => $request->telp,
         ]);
-        return redirect('/user/profile');
+
+        return redirect('profile');
         // DB::table('users')
         // ->where('id', $id)
         // ->update([

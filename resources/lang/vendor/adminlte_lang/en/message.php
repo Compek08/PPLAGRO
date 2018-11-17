@@ -134,6 +134,11 @@ return [
     'loggedin'                => 'Logged in!',
     'entering'                => 'Entering...',
     'registered'              => 'User Registered!',
+
+
     'stokbarang'              => 'Stok Barang',
     'transaksi'               => 'Transaksi',
+    'pemesanan'               => 'Pemesanan',
+    'pembayaran'              => 'Pembayaran',
+    'menu'                    => 'List Menu',
 ];
