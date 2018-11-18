@@ -14,35 +14,33 @@
                     <div class="box-header with-border">
                         <h3 class="box-title">Example box</h3>
                         <div class="box-tools pull-right">
-                            <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
-                            <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
+                            {{-- <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+                            <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button> --}}
                         </div>
                         <!-- /.box-tools -->
                     </div>
                     <!-- /.box-header -->
                     <div class="box-body">
-                        <form action="/order/add" method="POST">
+                        <form action="/Stock/add" method="POST">
                             {{-- @if(Auth::check())
                             @endif --}}
-                            {{-- {{dd($id)}} --}}
                             <div class="form-group">
-                                <input type="hidden" name="id" value="{{$id}}">
-                                <input type="hidden" name="idUser" value="{{Auth::user()->id}}">
+                                <label class="lable-mod" for="exampleInputEmail1">Nama Produk</label>
+                                <input type="text" name="nama" class="form-control" id="mod-inputan" placeholder="Nama" required autofocus>
                             </div>
                             <div class="form-group">
-                                <label class="lable-mod" for="exampleInputEmail1">Jumlah Pesanan</label>
-                                <input type="number" name="jumlah" class="form-control" id="mod-inputan" placeholder="Jumlah Pesanan" min="0" max="{{$stok}}" required autofocus>
+                                <label class="lable-mod" for="exampleInputEmail1">Stok</label>
+                                <input type="number" name="stok" class="form-control" id="mod-inputan" placeholder="Stok" required autofocus>
                             </div>
                             <div class="form-group">
-                                <label class="lable-mod" for="exampleInputEmail1">Lokasi Pengiriman</label>
-                                <input type="text" name="alamat" class="form-control" id="mod-inputan" placeholder="Lokasi Pengiriman" required autofocus>
+                                <label class="lable-mod" for="exampleInputEmail1">Harga</label>
+                                <input type="number" name="harga" class="form-control" id="mod-inputan" placeholder="Harga" required autofocus min="5000">
                             </div>
                             <div class="form-group">
-                                <label class="lable-mod" for="exampleInputEmail1">Tanggal Pengiriman</label>
-                                <input type="date" name="tanggal" class="form-control" id="mod-inputan"required autofocus>
+                                <input type="hidden" name="kat" value={{$cat}}>
                             </div>
 
-                            <button type="submit" class="btn btn-block btn-default">Pesan</button>
+                            <button type="submit" class="btn btn-block btn-default">Tambah</button>
                             {{ csrf_field() }}
                             {{-- {{ method_field('PATCH') }} --}}
                             {{-- <input type="hidden" name="_method"  value="PUT"> --}}

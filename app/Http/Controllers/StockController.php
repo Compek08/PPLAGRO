@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
+use App\stock;
 
 class StockController extends Controller
 {
@@ -19,24 +20,31 @@ class StockController extends Controller
         $ayam = DB::table('products')
                     ->select('type', 'stock', 'price', 'id')
                     ->where('category', '=', 'ayam')
-                    ->get();
+                    ->orderBy('stock', 'DESC')
+                    ->paginate(5);
                     // dd($stocks);
 
-        $telut = DB::table('products')
+        $telur = DB::table('products')
                     ->select('type', 'stock', 'price', 'id')
                     ->where('category', '=', 'telur')
-                    ->get();
-        return view('Stock', ['ayam' => $ayam, 'telur' => $telut]);
+                    ->orderBy('stock', 'DESC')
+                    ->paginate(5);
+        return view('Stock', ['ayam' => $ayam, 'telur' => $telur]);
     }
+
+    // public function addIndex()
+    // {
+    //     return view('addStock');
+    // }
 
     /**
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create($cat)
     {
-        //
+        return view('addStock', ['cat' => $cat]);
     }
 
     /**
@@ -45,9 +53,22 @@ class StockController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $req)
     {
-        //
+        $this->validate($req,[
+            'nama' => 'required|unique:stocks',
+            'stok' => 'required',
+            'harga' => 'required',
+        ]);
+
+        $stok = new stock;
+        $stok->type = $req->nama;
+        $stok->stock = $req->stok;
+        $stok->price = $req->harga;
+        $stok->category = $req->kat;
+        $stok->save();
+
+        return redirect('/Stock');
     }
 
     /**
@@ -92,6 +113,9 @@ class StockController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $stock = stock::find($id);
+        $stock->delete();
+
+        return redirect('/Stock');
     }
 }

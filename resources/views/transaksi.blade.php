@@ -64,9 +64,10 @@
                                     <?php endforeach ?>
                                 </table>
                             <?php
-                        } else {?>
-                            <h2 style="text-align:center"><strong>Lengkapi data diri</strong> anda sebelum melakukan pemesanan</h2>
-                        <?php }}?>
+                            } else {?>
+                                <h2 style="text-align:center"><strong>Lengkapi data diri</strong> anda sebelum melakukan pemesanan</h2>
+                            <?php }
+                        }?>
                     </div>
                     <!-- /.box-body -->
                 </div>

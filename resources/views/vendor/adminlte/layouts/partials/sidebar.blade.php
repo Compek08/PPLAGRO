@@ -33,10 +33,10 @@
         <ul class="sidebar-menu" data-widget="tree">
             <li class="header">{{ trans('adminlte_lang::message.menu') }}</li>
             <!-- Optionally, you can add icons to the links -->
-            <li><a href="{{ url('home') }}"><i class='fa fa-link'></i> <span>{{ trans('adminlte_lang::message.home') }}</span></a></li>
-            <li><a href="/Stock"><i class='fa fa-link'></i> <span>{{ trans('adminlte_lang::message.stokbarang') }}</span></a></li>
+        <li><a href="{{ url('home') }}"><i class='fa fa-2x fa-home'></i> <span> <?php echo "&nbsp&nbsp&nbsp&nbsp"; ?> {{ trans('adminlte_lang::message.home') }}</span></a></li>
+            <li><a href="/Stock"><i class='fa fa-2x fa-dropbox'></i> <span> <?php echo "&nbsp&nbsp&nbsp&nbsp"; ?> {{ trans('adminlte_lang::message.stokbarang') }}</span></a></li>
             <li class="treeview">
-                <a href="#"><i class='fa fa-link'></i> <span>{{ trans('adminlte_lang::message.transaksi') }}</span> <i class="fa fa-angle-left pull-right"></i></a>
+                <a href="#"><i class='fa fa-2x fa-money'></i> <span> <?php echo "&nbsp&nbsp&nbsp&nbsp"; ?> {{ trans('adminlte_lang::message.transaksi') }}</span> <i class="fa fa-angle-left pull-right"></i></a>
                 <ul class="treeview-menu">
                     <li><a href="/transaksi/pemesanan">{{ trans('adminlte_lang::message.pemesanan') }}</a></li>
                     <li><a href="#">{{ trans('adminlte_lang::message.pembayaran') }}</a></li>

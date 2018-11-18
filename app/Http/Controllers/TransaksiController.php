@@ -7,6 +7,8 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use Carbon\Carbon;
+use App\order;
+use App\stock;
 
 class TransaksiController extends Controller
 {
@@ -46,31 +48,54 @@ class TransaksiController extends Controller
         //
     }
 
-    public function orderIndex(){
-        return view('order');
+    public function orderIndex($id){
+        $order = stock::findOrfail($id);
+        // dd($order);
+        return view('order', ['id' => $id, 'stok' => $order->stock]);
     }
 
-    public function order(Request $req, $id)
+    public function order(Request $req)
     {
         $this->validate($req,[
-            'judul' => 'required|string|min:4|unique:pengumuman',
-            'isi' => 'required|string|min:12',
-            'status' => 'required',
+            'jumlah' => 'required',
+            'alamat' => 'required|string',
+            'tanggal' => 'required',
         ]);
 
         // $date = Carbon::now();
         // $carbon = Carbon::createFromFormat('Y-m-d H:i:s', $date, 'UTC');
         // $carbon->tz = 'Asia/Jakarta';
 
-        $ann = new pengumuman;
-        $ann->judul = $req->judul;
-        $ann->isi = $req->isi;
-        $ann->status = $req->status;
-        $ann->id_penulis = $id;
-        $ann->save();
+        $order = new order;
+        $order->idProduct = $req->id;
+        $order->quantity = $req->jumlah;
+        $order->orderDate = $req->tanggal;
+        $order->idUser = $req->idUser;
+        $order->address = $req->alamat;
+        $order->save();
 
-        $id2 = $ann->id;
-        return redirect('/kades/'.$id.'/pengumuman/'.$id2);
+        return $this->minStock($req->id, $req->jumlah);
+        // dd($order, stock::findOrfail($req->id));
+    }
+
+    public function minStock($id, $quantity){
+        $prod = stock::findOrfail($id);
+        $count = $prod->stock - $quantity;
+        $prod->update([
+            'stock' => $count
+        ]);
+
+        return redirect('/transaksi/pemesanan');
+    }
+
+    public function plusStock($id, $quantity){
+        $prod = stock::findOrfail($id);
+        $count = $prod->stock + $quantity;
+        $prod->update([
+            'stock' => $count
+        ]);
+
+        return redirect('/transaksi/pemesanan');
     }
 
     /**

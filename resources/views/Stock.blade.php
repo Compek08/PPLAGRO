@@ -39,18 +39,25 @@
                                     <td>{{$key->price}}</td>
                                     <?php if(Auth::user()->role == 0) { ?>
                                         <td style="text-align: center;">
-                                            <a href="/admin/{{ Auth::user()->name }}/data/edit/{{$key->id}}" class="btn btn-warning">Edit</a>
-                                            <button href="/stock" class="btn btn-danger" type="button" data-toggle="modal" data-target="#myModal">Hapus</button>
+                                            <form action="/Stock/{{$key->id}}/delete" method="post">
+                                                {{csrf_field()}}
+                                                <a href="/admin/{{ Auth::user()->name }}/data/edit/{{$key->id}}" class="btn btn-warning">Edit</a>
+                                                {{ method_field("delete") }}
+                                                <button class="btn btn-danger" type="submit">Hapus</button>
+                                            </form>
                                         </td> <?php } else { ?>
                                             <td style="text-align: center;">
-                                                <a href="/order" class="btn btn-success">Pesan</a>
+                                                    <a <?php if($key->stock != 0){?>href="/order/{{$key->id}}"<?php }?> class="btn btn-success" <?php if($key->stock == 0){?> disabled <?php }; ?> >Pesan</a>
                                             </td>
                                         <?php } ?>
                                 </tr>
                                 <?php endforeach ?>
                         </table>
+                        <div class="page">
+                            {{$ayam->links()}}
+                        </div>
                         <?php if(Auth::user()->role == 0) {?>
-                            <button href="" type="button" class="btn btn-block btn-default">Tambah</button>
+                            <a href="Stock/addStock/ayam" type="button" class="btn btn-block btn-default">Tambah</a>
                             {{ csrf_field() }}
                         <?php }?>
                     </div>
@@ -91,14 +98,17 @@
                                             <button href="/stock" class="btn btn-danger" type="button" data-toggle="modal" data-target="#myModal">Hapus</button>
                                         </td> <?php } else { ?>
                                             <td style="text-align: center;">
-                                                <a href="/order" class="btn btn-success">Pesan</a>
+                                                <a <?php if($key->stock != 0){?>href="/order/{{$key->id}}"<?php }?> class="btn btn-success" <?php if($key->stock == 0){?> disabled <?php }; ?> >Pesan</a>
                                             </td>
                                         <?php } ?>
                                 </tr>
                                 <?php endforeach ?>
                         </table>
+                        <div class="page">
+                            {{$telur->links()}}
+                        </div>
                         <?php if(Auth::user()->role == 0) {?>
-                            <button href="" type="button" class="btn btn-block btn-default">Tambah</button>
+                            <a href="Stock/addStock/telur" type="button" class="btn btn-block btn-default">Tambah</a>
                             {{ csrf_field() }}
                         <?php }?>
                     </div>

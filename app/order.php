@@ -4,8 +4,8 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class stock extends Model
+class order extends Model
 {
-    protected $table = 'products';
+    protected $table = 'orders';
     protected $guarded = ['id'];
 }
